@@ -1,0 +1,79 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset = "utf-8">
+	<title></title>
+    <!-- jQuery import 방식2  CDN 방식 -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script> 
+</head>
+<script>
+    //아래방식은 JavaScript에서 DOM을 다루는 방식
+    window.onload = function(){
+        console.log("window.onload script : "+document.getElementById("id1"));
+        
+        document.getElementById("id1").style.color="red";
+    };
+    
+    //=============================================================
+    //아래방식은 jQuery의 3가지 방식(window.onload -> jQuery방식)
+    
+    //방식1 : jQuery(document).ready(function(){});
+    //jQuery라는 단어를 $로 대체사용 가능하다.
+    jQuery(document).ready(function(){
+        $("#id1").css("background-color", "yellow");
+    });
+    
+    
+    //방식2 : $().ready(function(){}); //document를 생략
+    $().ready(function(){
+        //JavaScript 코드로 객체 찾아서 스타일 적용
+        document.getElementById("id1").style.color = "blue";
+        
+        //jQuery 사용 객체를 찾아 스타일 적용
+        $("#id1").css("color", "red");
+        $("#id2").css("background-color", "orange");
+        $("#id3").css("background-color", "aqua");
+        
+        $(".cl_h3").css("background-color", "powderblue");
+    });
+    
+    
+    //방식3 : $(function(){});
+    $(function(){
+        $("#id4").css("background-color", "yellow");
+        
+        $("div h3").css("background-color", "orange");
+        
+        $(".cl_p").css("background-color", "powderblue");
+        
+        $("div > span > h1").css("background-color", "magenta");
+    });
+    
+    
+    
+    
+</script>
+<body>
+	<h1 id="id1">제이쿼리(jQuery)</h1>
+    <h3 id="id2">제이쿼리1 - id2</h3>
+    <h3 id="id3">제이쿼리2 - id3</h3>
+    
+    <h3 class="cl_h3">제이쿼리3 - cl_h3</h3>
+    <h3 class="cl_h3">제이쿼리4 - cl_h3</h3>
+    <hr>
+    
+    <div>
+        <h1>--div안에 hi</h1>
+        <h3 id="id4">--div안에 h3 : id4 </h3>
+        <h3>--div안에 h3</h3>
+        <h3>--div안에 h3</h3>
+        <span>
+            <h1>--|--div &gt; span &gt; h1</h1>
+            <p class="cl_p">--|--div &gt; span &gt; p1</p>
+            <p class="cl_p">--|--div &gt; span &gt; p2</p>
+        </span>
+    </div>
+    
+</body>
+
+</html>
