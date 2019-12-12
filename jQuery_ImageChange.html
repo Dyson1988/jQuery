@@ -1,0 +1,110 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset = "utf-8">
+	<title>3개 이미지 전환</title>
+    <!-- jQuery import 방식2 CDN 방식 -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script> 
+<style>
+    h1 {
+        background-color: #fff000;
+        width: 160px;
+        height: 160px;
+        text-align: right;
+        line-height: 210px;
+        font-weight: bold;
+        font-size: 6em
+    }
+    * { margin: 0; padding: 0;}
+    #simgs {
+        width: 528px; /* 이미지 3개 표시할 크기*/
+        height: 176px;
+        border: 10px solid powderblue;
+        left: 200px;
+        top: 100px;;
+        
+        overflow: hidden;
+        position: relative;
+    }
+    #simgs > ul      { list-style: none; }
+    #simgs > ul > li { float: left; }
+    #simgs > a { 
+        clear: both;
+        position: absolute;
+        width: 50px; height: 50px;
+        border-radius: 50%;
+        background-color: #fff000;
+        
+        top: 70px;
+        text-align: center;
+        line-height: 50px;
+        font-size: 1.35rem;
+        font-weight: bold;
+    }
+    #prev  { left: 0px; }
+    #next  { right: 0px; }
+    #imgUl { margin-left: 0px; }
+</style>
+<script>    
+    //append(), prepend() 메소드 사용해서 이미지 전환
+    $(function(){
+        var timer;
+        //next 버튼 : 맨 앞의 이미지를 맨뒤로 보내기 (setInterval을 이용하여 자동)
+        $("#next").click(function(){
+            for (var i = 0; i < 3; i++){
+                var imageFirst = $("#imgUl>li").eq(0);
+                $("#imgUl").append(imageFirst);
+            }
+        });
+        //prev 버튼 : 맨 뒤의 이미지를 맨 앞으로 보내기 (setInterval을 이용하여 자동)
+        $("#prev").click(function(){
+            timer = setInterval(function(){
+                var imageLast = $("#imgUl>li").eq(9);
+                $("#imgUl").prepend(imageLast);
+            },0.1);
+        });
+        //이미지 클릭시 stop 된다.
+        $(".img").mousedown(function(){
+            clearInterval(timer);
+        });
+        //stop버튼 클릭시 stop 된다.
+        $("button").click(function(){
+            clearInterval(timer);
+        });
+    });
+</script>
+</head>
+<body>
+   <h1>JS</h1>
+    <div id="simgs">
+        <ul id="imgUl">
+            <li><img class="img" src="images/simg01.jpg"></li>
+            <li><img class="img" src="images/simg02.jpg"></li>
+            <li><img class="img" src="images/simg03.jpg"></li>
+            <li><img class="img" src="images/simg04.jpg"></li>
+            <li><img class="img" src="images/simg05.jpg"></li>
+            <li><img class="img" src="images/simg06.jpg"></li>
+            <li><img class="img" src="images/simg07.jpg"></li>
+            <li><img class="img" src="images/simg08.jpg"></li>
+            <li><img class="img" src="images/simg09.jpg"></li>
+            <li><img class="img" src="images/simg10.jpg"></li>
+        </ul>
+        <a id="prev">&lt;&lt;</a>
+        <a id="next">&gt;&gt;</a>
+    </div>
+    <button>stop</button>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
